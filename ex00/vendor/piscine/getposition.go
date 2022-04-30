@@ -36,7 +36,7 @@ func bishop(board []string, bi, bj int) int {
 	for i, _ := range board {
 		rs := []rune(board[i])
 		for j, pc := range rs {
-			if (i+j == bi+bj || i-j == bi-bj) && !isKing(pc) {
+			if (i+j == bi+bj || i-j == bi-bj) && isKing(pc) {
 				return 1
 			}
 		}
@@ -49,7 +49,7 @@ func rook(board []string, ri, rj int) int {
 	for i, _ := range board {
 		rs := []rune(board[i])
 		for j, pc := range rs {
-			if (i == ri || j == rj) && !isKing(pc) {
+			if (i == ri || j == rj) && isKing(pc) {
 				return 1
 			}
 		}
