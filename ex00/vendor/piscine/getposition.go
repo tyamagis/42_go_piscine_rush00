@@ -12,16 +12,17 @@ func isPiece(r rune) bool {
 	return false
 }
 
-func pawn(board []string, i, j int) {
-	for pi, _ := range board {
-		rs := []rune(board[pi])
-		for pj, pc := range ps {
-			if (pi == i - 1 && pj == j - 1 && !isPiece(pc)) {
-
-			} else if (pi == i - 1 && pj == j + 1 && !isPiece(pc)) {
-
+func pawn(board []string, pi, pj int) {
+	for i, _ := range board {
+		rs := []rune(board[i])
+		for j, pc := range rs {
+			if (i == pi - 1 && j == pj - 1 && !isPiece(pc)) {
+				rs[j] = '1'
+			} else if (i == pi - 1 && j == pj + 1 && !isPiece(pc)) {
+				rs[j] = '1'
 			}
 		}
+		board[i] = string(rs)
 	}
 }
 
@@ -47,11 +48,13 @@ func convAscii(board []string) {
 		}
 		board[i] = string(rs)
 	}
-	fmt.Println(board)
 }
 
 func ConvertBoard(board []string) {
+	fmt.Println("ConvertBoard() >>")
+	fmt.Println("first :", board)
 	convAscii(board)
+	fmt.Println("Ascii[.] :", board)
 	for i, s := range board {
 		for j, c := range s {
 			if c == 'P' {
@@ -65,4 +68,5 @@ func ConvertBoard(board []string) {
 			}
 		}
 	}
+	fmt.Println("at last :", board)
 }
