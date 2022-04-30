@@ -1,49 +1,61 @@
 package piscine
 
-import "fmt"
-
 // pieces are...
 // P, B, R, Q and K
 
-func isPiece(r rune) bool {
-	if r == 'P' || r == 'B' || r == 'R' || r == 'Q' || r == 'K' {
+func isKing(r rune) bool {
+	if r == 'K' {
 		return true
 	}
 	return false
 }
 
-func pawn(board []string, pi, pj int) {
+func isPiece(r rune) bool {
+	if r == 'K' || r == 'P' || r == 'B' || r == 'R' || r == 'Q' {
+		return true
+	}
+	return false
+}
+
+func pawn(board []string, pi, pj int) int {
 	for i, _ := range board {
 		rs := []rune(board[i])
 		for j, pc := range rs {
-			if i == pi-1 && j == pj-1 && !isPiece(pc) {
-				rs[j] = '1'
-			} else if i == pi-1 && j == pj+1 && !isPiece(pc) {
-				rs[j] = '1'
+			if i == pi-1 && j == pj-1 && isKing(pc) {
+				return 1
+			} else if i == pi-1 && j == pj+1 && isKing(pc) {
+				return 1
 			}
 		}
 		board[i] = string(rs)
 	}
+	return 0
 }
 
-func bishop(board []string, bi, bj int) {
+func bishop(board []string, bi, bj int) int {
 	for i, _ := range board {
 		rs := []rune(board[i])
 		for j, pc := range rs {
-			if (i+j == bi+bj || i-j == bi-bj) && !isPiece(pc) {
-				rs[j] = '1'
+			if (i+j == bi+bj || i-j == bi-bj) && !isKing(pc) {
+				return 1
 			}
 		}
 		board[i] = string(rs)
 	}
+	return 0
 }
 
-func rook(board []string, i, j int) {
-
-}
-
-func queen(board []string, i, j int) {
-
+func rook(board []string, ri, rj int) int {
+	for i, _ := range board {
+		rs := []rune(board[i])
+		for j, pc := range rs {
+			if (i == ri || j == rj) && !isKing(pc) {
+				return 1
+			}
+		}
+		board[i] = string(rs)
+	}
+	return 0
 }
 
 func convAscii(board []string) {
@@ -58,23 +70,25 @@ func convAscii(board []string) {
 	}
 }
 
-func ConvertBoard(board []string) {
-	fmt.Println("ConvertBoard() >>")
-	fmt.Println("first :", board)
+func ConvertBoard(board []string) bool {
 	convAscii(board)
-	fmt.Println("Ascii[.] :", board)
+	check := 0
 	for i, s := range board {
 		for j, c := range s {
 			if c == 'P' {
-				pawn(board, i, j)
+				check += pawn(board, i, j)
 			} else if c == 'B' {
-				bishop(board, i, j)
+				check += bishop(board, i, j)
 			} else if c == 'R' {
-				rook(board, i, j)
+				check += rook(board, i, j)
 			} else if c == 'Q' {
-				queen(board, i, j)
+				check += bishop(board, i, j)
+				check += rook(board, i, j)
+			}
+			if check != 0 {
+				return true
 			}
 		}
 	}
-	fmt.Println("at last :", board)
+	return false
 }

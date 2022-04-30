@@ -2,19 +2,18 @@ package main
 
 import (
 	p "piscine"
+	u "utils"
 )
-
 
 func checkmate(board []string){
 	if p.CheckBoard(board) == false {
-		// print error
+		u.PrintStr("Error >> board is invalid.\n")
 	}
-	p.ConvertBoard(board)
-	// if Judge(board) {
-	// 	ft.PrintStr("Success\n")
-	// } else {
-	// 	ft.PrintStr("Fail\n")
-	// }
+	if p.ConvertBoard(board) == true {
+		u.PrintStr("Fail\n")
+	} else {
+		u.PrintStr("Success\n")
+	}
 }
 
 func main(){
