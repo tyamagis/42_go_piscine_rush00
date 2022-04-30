@@ -1,5 +1,6 @@
 package piscine
 
+import "utils"
 // king is 1
 // board is square (row == column)
 
@@ -10,12 +11,12 @@ func CheckBoard(board []string) bool {
 	for i, s := range board {
 		// check line length
 		if i == 0 {
-			row = p.StrLen(s)
-		} else if (p.StrLen(s) != row) {
+			row = utils.StrLen(s)
+		} else if (utils.StrLen(s) != row) {
 			return false
 		}
 		// count King piece
-		if p.StrRFind(s, 'K') {
+		if utils.StrRFind(s, 'K') {
 			num_king++
 			if num_king > 1 {
 				return false

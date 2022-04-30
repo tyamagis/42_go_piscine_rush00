@@ -1,4 +1,4 @@
-package piscine
+package utils
 
 import (
 	"ft"
