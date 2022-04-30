@@ -1,7 +1,5 @@
 package piscine
 
-import "fmt"
-
 // king is 1
 // board is square (row == column)
 
@@ -10,8 +8,6 @@ func CheckBoard(board []string) bool {
 	column := 0;
 	num_king := 0;
 	for i, s := range board {
-		fmt.Println(i)
-		fmt.Println(s)
 		// check line length
 		if i == 0 {
 			row = p.StrLen(s)
