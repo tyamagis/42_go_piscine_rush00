@@ -16,9 +16,9 @@ func pawn(board []string, pi, pj int) {
 	for i, _ := range board {
 		rs := []rune(board[i])
 		for j, pc := range rs {
-			if (i == pi - 1 && j == pj - 1 && !isPiece(pc)) {
+			if i == pi-1 && j == pj-1 && !isPiece(pc) {
 				rs[j] = '1'
-			} else if (i == pi - 1 && j == pj + 1 && !isPiece(pc)) {
+			} else if i == pi-1 && j == pj+1 && !isPiece(pc) {
 				rs[j] = '1'
 			}
 		}
@@ -26,8 +26,16 @@ func pawn(board []string, pi, pj int) {
 	}
 }
 
-func bishop(board []string, i, j int) {
-
+func bishop(board []string, bi, bj int) {
+	for i, _ := range board {
+		rs := []rune(board[i])
+		for j, pc := range rs {
+			if (i+j == bi+bj || i-j == bi-bj) && !isPiece(pc) {
+				rs[j] = '1'
+			}
+		}
+		board[i] = string(rs)
+	}
 }
 
 func rook(board []string, i, j int) {
