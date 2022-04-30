@@ -25,7 +25,7 @@ func CheckBoard(board []string) bool {
 		column = i;
 	}
 	// square or not
-	if row != column {
+	if row - 1 != column || num_king != 1 {
 		return false
 	}
 	return true
