@@ -18,6 +18,7 @@ func CheckBoard(board []string) bool {
 		} else if (p.StrLen(s) != row) {
 			return false
 		}
+		// count King piece
 		if p.StrRFind(s, 'K') {
 			num_king++
 			if num_king > 1 {
@@ -26,6 +27,7 @@ func CheckBoard(board []string) bool {
 		}
 		column = i;
 	}
+	// square or not
 	if row != column {
 		return false
 	}
