@@ -9,9 +9,7 @@ func checkmate(board []string){
 	if p.CheckBoard(board) == false {
 		// print error
 	}
-	// if GetPosition(board) == false {
-	// 	// print error
-	// }
+	p.ConvertBoard(board)
 	// if Judge(board) {
 	// 	ft.PrintStr("Success\n")
 	// } else {
@@ -21,10 +19,13 @@ func checkmate(board []string){
 
 func main(){
 	board := []string{
-		"R...",
-		".K..",
-		"..P.",
-		"....",
+		"aBcdefg",
+		"hijKlmn",
+		"oPQRstu",
+		"vwxyzAb",
+		"CDEFGHI",
+		"JkLMNOp",
+		"rSTUVWX",
 	}
 
 	checkmate(board);
