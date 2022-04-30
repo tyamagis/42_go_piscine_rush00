@@ -11,8 +11,8 @@ func CheckBoard(board []string) bool {
 	for i, s := range board {
 		// check line length
 		if i == 0 {
-			row = utils.StrLen(s)
-		} else if (utils.StrLen(s) != row) {
+			column = utils.StrLen(s)
+		} else if (utils.StrLen(s) != column) {
 			return false
 		}
 		// count King piece
@@ -22,10 +22,10 @@ func CheckBoard(board []string) bool {
 				return false
 			}
 		}
-		column = i;
+		row = i;
 	}
 	// square or not
-	if row - 1 != column || num_king != 1 {
+	if column - 1 != row || num_king != 1 {
 		return false
 	}
 	return true

@@ -13,7 +13,8 @@ func isPiece(r rune) bool {
 }
 
 func pawn(board []string, i, j int) {
-	for pi, ps := range board {
+	for pi, _ := range board {
+		rs := []rune(board[pi])
 		for pj, pc := range ps {
 			if (pi == i - 1 && pj == j - 1 && !isPiece(pc)) {
 
