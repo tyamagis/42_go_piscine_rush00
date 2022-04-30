@@ -1,5 +1,7 @@
 package piscine
 
+import u "utils"
+
 // pieces are...
 // P, B, R, Q and K
 
@@ -18,42 +20,115 @@ func isPiece(r rune) bool {
 }
 
 func pawn(board []string, pi, pj int) int {
-	for i, _ := range board {
-		rs := []rune(board[i])
-		for j, pc := range rs {
+	for i, s := range board {
+		for j, pc := range s {
 			if i == pi-1 && j == pj-1 && isKing(pc) {
 				return 1
 			} else if i == pi-1 && j == pj+1 && isKing(pc) {
 				return 1
 			}
 		}
-		board[i] = string(rs)
 	}
 	return 0
 }
 
 func bishop(board []string, bi, bj int) int {
-	for i, _ := range board {
-		rs := []rune(board[i])
-		for j, pc := range rs {
-			if (i+j == bi+bj || i-j == bi-bj) && isKing(pc) {
-				return 1
-			}
+	size := u.StrLen(board[0])
+	// left top
+	for i, k := bi - 1, 0; i >= 0; i-- {
+		j := bj - k;
+		if j < 0 {
+			break
 		}
-		board[i] = string(rs)
+		if isKing(rune(board[i][j])) {
+			return 1
+		}
+		if isPiece(rune(board[i][j])) {
+			break
+		}
+		k++
+	}
+	// right top
+	for i, k := bi - 1, 0; i >= 0; i-- {
+		j := bj + k;
+		if j >= size {
+			break
+		}
+		if isKing(rune(board[i][j])) {
+			return 1
+		}
+		if isPiece(rune(board[i][j])) {
+			break
+		}
+		k++
+	}
+	// left bottom
+	for i, k := bi + 1, 0; i < size; i++ {
+		j := bj - k;
+		if j < 0 {
+			break
+		}
+		if isKing(rune(board[i][j])) {
+			return 1
+		}
+		if isPiece(rune(board[i][j])) {
+			break
+		}
+		k++
+	}
+	// right bottom
+	for i, k := bi + 1, 0; i < size; i++ {
+		j := bj + k;
+		if j >= size {
+			break
+		}
+		if isKing(rune(board[i][j])) {
+			return 1
+		}
+		if isPiece(rune(board[i][j])) {
+			break
+		}
 	}
 	return 0
 }
 
 func rook(board []string, ri, rj int) int {
-	for i, _ := range board {
-		rs := []rune(board[i])
-		for j, pc := range rs {
-			if (i == ri || j == rj) && isKing(pc) {
-				return 1
-			}
+	size := u.StrLen(board[0])
+	// top
+	for i := ri - 1; i >= 0; i-- {
+		if isKing(rune(board[i][rj])) {
+			return 1
 		}
-		board[i] = string(rs)
+		if isPiece(rune(board[i][rj])) {
+			break
+		}
+	}
+	// left
+	for j := rj - 1; j >= 0; j-- {
+		if isKing(rune(board[ri][j])) {
+			return 1
+		}
+		if isPiece(rune(board[ri][j])) {
+			break
+		}
+	}
+	// right
+	for j := rj +1; j < size; j++ {
+		if isKing(rune(board[ri][j])) {
+			return 1
+		}
+		if isPiece(rune(board[ri][j])) {
+			break
+		}
+	}
+	// bottom
+	for i := ri + 1; i < size; i++ {
+		if isKing(rune(board[i][rj])) {
+			return 1
+		}
+		if isPiece(rune(board[i][rj])) {
+			break
+		}
 	}
 	return 0
 }
