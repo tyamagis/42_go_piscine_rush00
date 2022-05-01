@@ -4,13 +4,6 @@ import (
 	"ft"
 )
 
-func Abs(i int) int {
-	if i < 0 {
-		i *= -1
-	}
-	return i
-}
-
 func StrRFind(s string, r rune) bool {
 	for _, c := range s {
 		if c == r {
@@ -28,7 +21,7 @@ func StrLen(s string) int {
 	return len
 }
 
-func PrintStr(s string){
+func PrintStr(s string) {
 	for _, c := range s {
 		ft.PrintRune(c)
 	}

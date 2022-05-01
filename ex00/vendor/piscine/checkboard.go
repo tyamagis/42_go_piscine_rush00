@@ -1,18 +1,19 @@
 package piscine
 
 import "utils"
+
 // king is 1
 // board is square (row == column)
 
 func CheckBoard(board []string) bool {
-	row := 0;
-	column := 0;
-	num_king := 0;
+	row := 0
+	column := 0
+	num_king := 0
 	for i, s := range board {
 		// check line length
 		if i == 0 {
 			column = utils.StrLen(s)
-		} else if (utils.StrLen(s) != column) {
+		} else if utils.StrLen(s) != column {
 			return false
 		}
 		// count King piece
@@ -22,10 +23,10 @@ func CheckBoard(board []string) bool {
 				return false
 			}
 		}
-		row = i;
+		row = i
 	}
 	// square or not
-	if column - 1 != row || num_king != 1 {
+	if column-1 != row || num_king != 1 {
 		return false
 	}
 	return true

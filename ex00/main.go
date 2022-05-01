@@ -19,10 +19,13 @@ func checkmate(board []string){
 
 func main(){
 	board := []string{
-		"Q...",
-		"..K.",
-		".RP.",
-		"Q.B.",
+		"aBcdefg",
+		"hijKlmn",
+		"oPQRstu",
+		"vwxyzAb",
+		"CDEFGHI",
+		"JkLMNOp",
+		"rSTUVWX",
 	}
 
 	checkmate(board);
