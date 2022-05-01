@@ -11,9 +11,9 @@ func checkmate(board []string){
 		return
 	}
 	if p.ConvertBoard(board) == true {
-		u.PrintStr("Fail\n")
-	} else {
 		u.PrintStr("Success\n")
+	} else {
+		u.PrintStr("Fail\n")
 	}
 }
 
