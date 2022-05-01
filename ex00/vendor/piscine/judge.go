@@ -35,7 +35,7 @@ func pawn(board []string, pi, pj int) int {
 func bishop(board []string, bi, bj int) int {
 	size := u.StrLen(board[0])
 	// left top
-	for i, k := bi-1, 0; i >= 0; i-- {
+	for i, k := bi-1, 1; i >= 0; i-- {
 		j := bj - k
 		if j < 0 {
 			break
@@ -49,7 +49,7 @@ func bishop(board []string, bi, bj int) int {
 		k++
 	}
 	// right top
-	for i, k := bi-1, 0; i >= 0; i-- {
+	for i, k := bi-1, 1; i >= 0; i-- {
 		j := bj + k
 		if j >= size {
 			break
@@ -63,7 +63,7 @@ func bishop(board []string, bi, bj int) int {
 		k++
 	}
 	// left bottom
-	for i, k := bi+1, 0; i < size; i++ {
+	for i, k := bi+1, 1; i < size; i++ {
 		j := bj - k
 		if j < 0 {
 			break
@@ -77,7 +77,7 @@ func bishop(board []string, bi, bj int) int {
 		k++
 	}
 	// right bottom
-	for i, k := bi+1, 0; i < size; i++ {
+	for i, k := bi+1, 1; i < size; i++ {
 		j := bj + k
 		if j >= size {
 			break
