@@ -1,7 +1,5 @@
 package piscine
 
-import u "utils"
-
 // pieces are...
 // P, B, R, Q and K
 
@@ -33,7 +31,7 @@ func pawn(board []string, pi, pj int) int {
 }
 
 func bishop(board []string, bi, bj int) int {
-	size := u.StrLen(board[0])
+	size := StrLen(board[0])
 	// left top
 	for i, k := bi-1, 1; i >= 0; i-- {
 		j := bj - k
@@ -93,7 +91,7 @@ func bishop(board []string, bi, bj int) int {
 }
 
 func rook(board []string, ri, rj int) int {
-	size := u.StrLen(board[0])
+	size := StrLen(board[0])
 	// top
 	for i := ri - 1; i >= 0; i-- {
 		if isKing(rune(board[i][rj])) {
